@@ -17,7 +17,7 @@ const Content = (prop: any) => {
                                 <i className={task.done ? CHECK : UNCHECK} id="0"></i>
                             </button>
                             <p className={task.done ? LINE_THROUGH : "text"}>{task.name}</p>
-                            <p className="text-right">{task.time} hs</p>
+                            <p className={task.done ? "text-right lineThrough" : "text-right"}>{task.time} hs</p>
                             <button className="btn" onClick={() => prop.delete(index)}>
                                 <i className="fa fa-trash-o de" id="0"></i>
                             </button>

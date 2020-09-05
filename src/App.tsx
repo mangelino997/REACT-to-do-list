@@ -4,6 +4,7 @@ import './App.css';
 import Content from './components/Content';
 import AddItem from './components/AddItem';
 import Headers from './components/Headers';
+import Footer from './components/Footer';
 
 interface ITask {
   name: string,
@@ -61,7 +62,7 @@ function App() {
         </div>
         <div className="col"></div>
       </div>
-
+      <Footer></Footer>
     </div>
   );
 }
