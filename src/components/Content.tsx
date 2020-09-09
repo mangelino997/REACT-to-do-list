@@ -1,26 +1,29 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
+import Task from './Task';
 
-
-const Content = (prop: any) => {
-    // Classes names
-    const CHECK = "fa fa-check-circle";
-    const UNCHECK = "fa fa-circle-thin";
-    const LINE_THROUGH = "text lineThrough";
-
+interface ITask {
+    name: string,
+    done: boolean,
+    time: string
+  };
+  interface typeProps {
+    listTasks: Array<ITask>;
+    done: (index: number) => void;
+    delete: (index: number) => void;
+  };
+const Content = (props: typeProps ) => {
     return (
         <Fragment>
             <div className="content">
-                <ul id="list">
-                    {prop.listTasks.map((task: any, index: number) =>
+                <ul id="list" className="ul-tasks">
+                    <h4 className="title-tasks">{props.listTasks.length} Tasks</h4>
+                    {props.listTasks.map((task: any, index: number) =>
                         <li className="item" key={index}>
-                            <button className="btn" onClick={() => prop.done(index)}>
-                                <i className={task.done ? CHECK : UNCHECK} id="0"></i>
-                            </button>
-                            <p className={task.done ? LINE_THROUGH : "text"}>{task.name}</p>
-                            <p className={task.done ? "text-right lineThrough" : "text-right"}>{task.time} hs</p>
-                            <button className="btn" onClick={() => prop.delete(index)}>
-                                <i className="fa fa-trash-o de" id="0"></i>
-                            </button>
+                            <Task 
+                            task={task}
+                            index={index}
+                            done={props.done} 
+                            delete={props.delete}></Task>
                         </li>
                     )}
                 </ul>

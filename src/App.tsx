@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Notifications, { notify } from 'react-notify-toast';
 import logo from './logo.svg';
 import './App.css';
 import Content from './components/Content';
@@ -11,21 +12,32 @@ interface ITask {
   done: boolean,
   time: string
 }
+
+// obtenemos las tareas del LocalStorage
+const localTask = localStorage.getItem("localTask");
 function App() {
   const task = {
-    name: "dddd",
+    name: "Ejemplo",
     done: false,
     time: null
   }
 
   // define el estado para la lista de tareas
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>(localTask ? JSON.parse(localTask) : []);
 
   // agrega una tarea al listado
   const addTask = (name: string, time: string) => {
-    if (!name || name == "")
+    let newTask = name.trim(); // elimina los espacios vacíos al comienzo y final
+    if (newTask == "")
       return;
-    setTasks([...tasks, { name, done: false, time }]);
+    try {
+      setTasks([...tasks, { name, done: false, time }]);
+      let myColor = { background: '#2EA44F', text: "#FFFFFF" };
+      notify.show("Task created", "custom", 5000, myColor);
+    } catch (error) {
+      let myColor = { background: 'red', text: "#FFFFFF" };
+      notify.show("Error", "custom", 5000, myColor);
+    }
   }
 
   // cambia el estado de la tarea
@@ -49,10 +61,12 @@ function App() {
   }
 
   useEffect(() => {
-    let total = tasks.length;
+    // persitencia de las tareas
+    localStorage.setItem("localTask", JSON.stringify(tasks));
   }, [tasks])
   return (
     <div className="container">
+      <div><Notifications options={{ zIndex: 200, top: '25px' }} /></div>
       <div className="row py-4">
         <div className="col"></div>
         <div className="col-md-5">

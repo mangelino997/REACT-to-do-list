@@ -1,6 +1,6 @@
 import React, { Fragment, FormEvent, useState } from 'react';
 
-const AddItem = (prop: any) => {
+const AddItem = (prop: {addTask: (name: string, time: string) => void}) => {
 
     // define la tarea
     const [task, setTask] = useState<string>('');

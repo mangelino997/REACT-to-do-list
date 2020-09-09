@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Headers = (prop: any) => {
+const Headers = (prop: { reset: () => void }) => {
     // Show todays date
     const op = { weekday: "long", month: "short", day: "numeric" };
     const today = new Date();
