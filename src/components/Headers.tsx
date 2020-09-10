@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Headers = (prop: { reset: () => void }) => {
+const Headers = ({reset}: { reset: () => void }) => {
     // Show todays date
     const op = { weekday: "long", month: "short", day: "numeric" };
     const today = new Date();
@@ -28,7 +28,7 @@ const Headers = (prop: { reset: () => void }) => {
         <Fragment>
             <div className="header">
                 <div className="clear">
-                    <i className="fa fa-refresh" onClick={prop.reset}></i>
+                    <i className="fa fa-refresh" onClick={reset}></i>
                 </div>
                 <div className="box-today">
                     <p className="today-day">AR</p> </div>

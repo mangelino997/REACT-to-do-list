@@ -183,7 +183,7 @@ box-shadow: 3px 3px 3px 1px rgba(232,236,243,0.83);
   left: 50px;
   height: 35px;
   width: auto;
-  min-width: 315px;
+  max-width: 315px;
   background-color: transparent;
   border: none;
   font-size: 20px;

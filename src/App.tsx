@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Notifications, { notify } from 'react-notify-toast';
-import logo from './logo.svg';
 import './App.css';
 import Content from './components/Content';
 import AddItem from './components/AddItem';
 import Headers from './components/Headers';
 import Footer from './components/Footer';
-
-interface ITask {
-  name: string,
-  done: boolean,
-  time: string
-}
+import { ITask } from './interfaces/ITask';
 
 // obtenemos las tareas del LocalStorage
 const localTask = localStorage.getItem("localTask");
 function App() {
-  const task = {
-    name: "Ejemplo",
-    done: false,
-    time: null
-  }
 
   // define el estado para la lista de tareas
   const [tasks, setTasks] = useState<ITask[]>(localTask ? JSON.parse(localTask) : []);
@@ -28,10 +17,10 @@ function App() {
   // agrega una tarea al listado
   const addTask = (name: string, time: string) => {
     let newTask = name.trim(); // elimina los espacios vacíos al comienzo y final
-    if (newTask == "")
+    if (newTask === "")
       return;
     try {
-      setTasks([...tasks, { name, done: false, time }]);
+      setTasks([{ name, done: false, time },...tasks]);
       let myColor = { background: '#2EA44F', text: "#FFFFFF" };
       notify.show("Task created", "custom", 5000, myColor);
     } catch (error) {

@@ -1,6 +1,6 @@
 import React, { Fragment, FormEvent, useState } from 'react';
 
-const AddItem = (prop: {addTask: (name: string, time: string) => void}) => {
+const AddItem = ({addTask}: {addTask: (name: string, time: string) => void}) => {
 
     // define la tarea
     const [task, setTask] = useState<string>('');
@@ -8,7 +8,7 @@ const AddItem = (prop: {addTask: (name: string, time: string) => void}) => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(task);
-        prop.addTask(task, hour);
+        addTask(task, hour);
         setTask('');
     }
 

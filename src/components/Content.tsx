@@ -1,17 +1,8 @@
 import React, { Fragment } from 'react';
 import Task from './Task';
+import { ITypeProps } from '../interfaces/ITypeProps';
 
-interface ITask {
-    name: string,
-    done: boolean,
-    time: string
-  };
-  interface typeProps {
-    listTasks: Array<ITask>;
-    done: (index: number) => void;
-    delete: (index: number) => void;
-  };
-const Content = (props: typeProps ) => {
+const Content = (props: ITypeProps) => {
     return (
         <Fragment>
             <div className="content">
@@ -19,11 +10,11 @@ const Content = (props: typeProps ) => {
                     <h4 className="title-tasks">{props.listTasks.length} Tasks</h4>
                     {props.listTasks.map((task: any, index: number) =>
                         <li className="item" key={index}>
-                            <Task 
-                            task={task}
-                            index={index}
-                            done={props.done} 
-                            delete={props.delete}></Task>
+                            <Task
+                                task={task}
+                                index={index}
+                                done={props.done}
+                                delete={props.delete}></Task>
                         </li>
                     )}
                 </ul>

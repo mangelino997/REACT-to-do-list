@@ -6,8 +6,8 @@ const Footer = () => {
             <div className="footer">
                 <div className="text-center py-1">
                     <a href="https://mangelino997.github.io/my-web/" 
-                    target="_blank" className="my-web">
-                    Marcio Angelino   <img src={myWeb}></img>
+                    target="blank" className="my-web">
+                    Marcio Angelino   <img src={myWeb} alt="img web"></img>
                  </a>
                 </div>
             </div>
